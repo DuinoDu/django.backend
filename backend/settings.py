@@ -25,7 +25,9 @@ SECRET_KEY = '2xy!+wut^7e$dh@^@61s&9hp_5w-e$#bhz-l59b)$1rovkzi=^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'yz-gpu007.hogpu.cc'
+]
 
 
 # Application definition
