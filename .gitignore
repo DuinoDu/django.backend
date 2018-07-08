@@ -105,3 +105,7 @@ venv.bak/
 
 # django
 migrations
+
+# vim
+*.swp
+*.swo
