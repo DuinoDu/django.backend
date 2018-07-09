@@ -48,11 +48,14 @@ GRAPHENE = {
     'SCHEMA': 'backend.schema.schema',
 }
 
-CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_ALLOW_ALL = True
 
-CORS_ORIGIN_WHITELIST = (
-    'localhost:3000',
-)
+#CORS_ORIGIN_WHITELIST = (
+#    '*'
+#    #'0.0.0.0:3000',
+#    #'localhost:3000',
+#    #'yz-gpu007.hogpu.cc:3000',
+#)
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
