@@ -1,3 +1,4 @@
 django
 graphene-django
 django-cors-headers
+django-graphql-jwt

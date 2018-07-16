@@ -1,3 +1,10 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# File              : backend/settings.py
+# Author            : duino <472365351duino@gmail.com>
+# Date              : 15.07.2018
+# Last Modified Date: 15.07.2018
+# Last Modified By  : duino <472365351duino@gmail.com>
 """
 Django settings for backend project.
 
@@ -48,6 +55,11 @@ GRAPHENE = {
     'SCHEMA': 'backend.schema.schema',
 }
 
+AUTHENTICATION_BACKENDS = [
+    'graphql_jwt.backends.JSONWebTokenBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
 CORS_ORIGIN_ALLOW_ALL = True
 
 #CORS_ORIGIN_WHITELIST = (
@@ -64,6 +76,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'graphql_jwt.middleware.JSONWebTokenMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
