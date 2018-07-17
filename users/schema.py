@@ -32,7 +32,7 @@ class Query(graphene.ObjectType):
 
     def resolve_permissions(self, info, username):
         user = get_user_model().objects.filter(username=username)[0]
-        return list(user.get_group_permissions())[0]
+        return list(user.groups.values_list('name', flat=True))[0]
 
 
 ### Error Message

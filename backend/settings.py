@@ -33,7 +33,8 @@ SECRET_KEY = '2xy!+wut^7e$dh@^@61s&9hp_5w-e$#bhz-l59b)$1rovkzi=^'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'yz-gpu007.hogpu.cc'
+    'yz-gpu007.hogpu.cc',
+    'localhost'
 ]
 
 

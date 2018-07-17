@@ -17,6 +17,7 @@ class Query(
         graphene.ObjectType):
     pass
 
+
 class Mutation(
         simple_app.schema.Mutation, 
         users.schema.Mutation,

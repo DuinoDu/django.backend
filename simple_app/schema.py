@@ -51,17 +51,19 @@ class ProjectTableType(DjangoObjectType):
 # query
 class Query(graphene.AbstractType):
     projecttablesum = graphene.Int()
-    all_projecttables = graphene.List(ProjectTableType)
     projecttables = graphene.List(ProjectTableType, 
-            company_name=graphene.String(),
-            contract_id=graphene.String(),
-            project_name=graphene.String(),)
+                                  company_name=graphene.String(),
+                                  contract_id=graphene.String(),
+                                  project_name=graphene.String(),)
+    table = graphene.Field(ProjectTableType, 
+                           tableID=graphene.String())
 
     def resolve_projecttablesum(self, info):
         return len(models.ProjectTable.objects.all());
 
-    def resolve_all_projecttables(self, info, **kwargs):
-        return models.ProjectTable.objects.all();
+    def resolve_table(self, info, tableID):
+        print(tableID)
+        return models.ProjectTable.objects.filter(id=tableID);
 
     def resolve_projecttables(self, info, company_name, contract_id, project_name, **kwargs):
         objs = models.ProjectTable.objects.all()
