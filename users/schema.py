@@ -3,8 +3,8 @@
 # File              : schema.py
 # Author            : duino <472365351duino@gmail.com>
 # Date              : 15.07.2018
-# Last Modified Date: 15.07.2018
-# Last Modified By  : duino <472365351duino@gmail.com>
+# Last Modified Date: 17.07.2018
+# Last Modified By  : du min <min.du@hobot.cc>
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
 
@@ -25,31 +25,17 @@ class UserType(DjangoObjectType):
 
 class Query(graphene.ObjectType):
     users = graphene.List(UserType)
+    permissions = graphene.Field(graphene.String, username=graphene.String())
 
     def resolve_users(self, info):
         return get_user_model().objects.all()
 
+    def resolve_permissions(self, info, username):
+        user = get_user_model().objects.filter(username=username)[0]
+        return list(user.get_group_permissions())[0]
+
 
 ### Error Message
-
-class CreateUserFailUsernameExists(graphene.ObjectType):
-    error_msg = graphene.String(required=True)
-
-class CreateUserFailOther(graphene.ObjectType):
-    error_msg = graphene.String(required=True)
-
-class CreateUserFailInvalidInvitation(graphene.ObjectType):
-    error_msg = graphene.String(required=True)
-
-class CreateUserSuccess(graphene.ObjectType):
-    user = graphene.Field(UserType, required=True)
-
-class CreateUserPayload(graphene.Union):
-    class Meta:
-        types = (CreateUserFailUsernameExists,
-                 CreateUserFailOther,
-                 CreateUserFailInvalidInvitation,
-                 CreateUserSuccess)
 
 
 class CreateUser(graphene.Mutation):
